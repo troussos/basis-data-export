@@ -10,5 +10,5 @@ spl_autoload_register(function ($class) {
 $user = new User('i');
 
 $dataURL = new DataUrl;
-$dataURL->setAssessments(array('TEST'));
+echo $dataURL->generateRequestURL('5');
 ?>
