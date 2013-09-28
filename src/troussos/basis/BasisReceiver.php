@@ -36,6 +36,13 @@ class BasisReceiver
         $this->dataURL = $dataURL;
     }
 
+    /**
+     * Get a generated URL and call the performRequest method. Return the raw response.
+     *
+     * @return Raw JSON Response
+     * @throws \LogicException
+     * @throws \Exception
+     */
     public function makeRequest()
     {
         //Has setParameters been called?
@@ -65,7 +72,6 @@ class BasisReceiver
                 throw $e;
             }
         }
-
         return $this->performBasisRequest($url);
     }
 

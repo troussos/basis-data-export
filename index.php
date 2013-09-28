@@ -13,5 +13,5 @@ $urls = new DataUrl();
 
 $basis = new BasisReceiver();
 $basis->setParameters($user, $urls);
-$basis->makeRequest();
+$parsedData = new DataParser($basis->makeRequest());
 ?>
