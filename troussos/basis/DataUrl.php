@@ -27,24 +27,25 @@ class DataUrl {
     private $baseURLExtension = '.json?summary=true&units=s';
 
     /**
-     * @var null
+     * @var - Data Granularity (60 = 1 per minute, 1 = 1 per second, etc.) Value should not be below 60,
+     *        no additional detail gets passed back at that level.
      */
-    private $interval = null;
+    private $interval = 60;
 
     /**
-     * @var null
+     * @var The start date to get assessments from. This will run from the start date until now.
      */
     private $start_date = null;
 
     /**
-     * @var null
+     * @var The offset from midnight in seconds to start pulling data
      */
-    private $start_offset = null;
+    private $start_offset = 0;
 
     /**
-     * @var null
+     * @var The offset from midnight in seconds to stop pulling data
      */
-    private $end_offset = null;
+    private $end_offset = 0;
 
     /**
      * @var array - Array of all of the assessments and their status
@@ -75,7 +76,6 @@ class DataUrl {
     {
         //Have all of the time intervals and limits been set?
         if(
-            is_null($this->interval) ||
             is_null($this->start_date) ||
             is_null($this->start_offset) ||
             is_null($this->end_offset)
@@ -154,28 +154,25 @@ class DataUrl {
     }
 
     /**
-     * @param mixed $end_offset
-     */
-    public function setEndOffset($end_offset)
-    {
-        //TODO: Validate the End Offset
-        $this->end_offset = $end_offset;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndOffset()
-    {
-        return $this->end_offset;
-    }
-
-    /**
-     * @param mixed $interval
+     * Set the interval and make sure that it is both above 60 and is numeric
+     *
+     * @param $interval
+     * @throws \InvalidArgumentException
      */
     public function setInterval($interval)
     {
-        //TODO: Validate the Interval
+        //Make sure that the interval is numeric
+        if(!is_numeric($interval))
+        {
+            throw new \InvalidArgumentException('Interval must be set to an integer');
+        }
+
+        //Make sure that the interval is above 60, anything less that 60 provides not additional detail
+        if($interval < 60)
+        {
+            throw new \InvalidArgumentException('Interval must be greater than 60');
+        }
+
         $this->interval = $interval;
     }
 
@@ -188,11 +185,17 @@ class DataUrl {
     }
 
     /**
-     * @param mixed $start_date
+     * Sets the start date and validates it as ISO 8601
+     *
+     * @param $start_date
+     * @throws \InvalidArgumentException
      */
     public function setStartDate($start_date)
     {
-        //TODO: Validate the start Date
+        if(!contains_date($start_date))
+        {
+            throw new \InvalidArgumentException('Start Date must be an ISO 8601 date string');
+        }
         $this->start_date = $start_date;
     }
 
@@ -202,22 +205,5 @@ class DataUrl {
     public function getStartDate()
     {
         return $this->start_date;
-    }
-
-    /**
-     * @param mixed $start_offset
-     */
-    public function setStartOffset($start_offset)
-    {
-        //TODO: Validate the start offset
-        $this->start_offset = $start_offset;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getStartOffset()
-    {
-        return $this->start_offset;
     }
 }
