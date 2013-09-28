@@ -71,7 +71,7 @@ class DataUrl {
         if(is_null($this->start_date))
         {
             //If they haven't, throw an exception
-            throw new \LogicException('Start Date must be set prior to generating a URL');
+            throw new \LogicException('Start Date must be set prior to generating a URL', 45);
         }
 
         //Run through the assessment array and concat the assessments into a set of URL parameters

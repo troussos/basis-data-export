@@ -7,6 +7,10 @@ require('vendor/autoload.php');
 use PHPUnit_Framework_TestCase;
 use troussos\basis\User;
 
+/**
+ * Class UserTest
+ * @package troussos\basis
+ */
 class UserTest extends \PHPUnit_Framework_TestCase
 {
 

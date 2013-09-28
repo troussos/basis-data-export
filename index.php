@@ -3,11 +3,15 @@ namespace troussos\basis;
 
 require_once('vendor/autoload.php');
 
-use troussos\basis\DataUrl;
+use troussos\basis\BasisReceiver;
 use troussos\basis\User;
+use troussos\basis\DataUrl;
 
-$user = new User('i');
+$user = new User('1');
 
-$dataURL = new DataUrl;
-echo $dataURL->generateRequestURL('5');
+$urls = new DataUrl();
+
+$basis = new BasisReceiver();
+$basis->setParameters($user, $urls);
+$basis->makeRequest();
 ?>
