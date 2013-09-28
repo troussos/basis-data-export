@@ -5,7 +5,7 @@ use troussos\basis\DataUrl;
 use troussos\basis\User;
 
 spl_autoload_register(function ($class) {
-    include str_replace("\\", "/", $class) . '.php';
+    include "src/" . str_replace("\\", "/", $class) . '.php';
 });
 $user = new User('i');
 

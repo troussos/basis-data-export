@@ -5,7 +5,10 @@ namespace troussos\basis;
 use troussos\basis\User;
 use troussos\basis\DataUrl;
 
-
+/**
+ * Class BasisReceiver
+ * @package troussos\basis
+ */
 class BasisReceiver implements BasisReciverInterface
 {
 

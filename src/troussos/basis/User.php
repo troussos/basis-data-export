@@ -2,7 +2,10 @@
 
 namespace troussos\basis;
 
-
+/**
+ * Class User
+ * @package troussos\basis
+ */
 class User {
 
     /**

@@ -2,7 +2,10 @@
 
 namespace troussos\basis;
 
-
+/**
+ * Class BasisReceiverInterface
+ * @package troussos\basis
+ */
 interface BasisReceiverInterface
 {
     public function makeRequest();
