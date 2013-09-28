@@ -203,13 +203,15 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
         );
 
         //Validate the initialized values in assessments
-        $this->assertEquals('1', $this->dataURL->getAssessments()['gsr']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['air_temp']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['heartrate']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['steps']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['calories']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['skin_temp']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['bodystates']);
+        $assessments = $this->dataURL->getAssessments();
+        
+        $this->assertEquals('1', $assessments['gsr']);
+        $this->assertEquals('1', $assessments['air_temp']);
+        $this->assertEquals('1', $assessments['heartrate']);
+        $this->assertEquals('1', $assessments['steps']);
+        $this->assertEquals('1', $assessments['calories']);
+        $this->assertEquals('1', $assessments['skin_temp']);
+        $this->assertEquals('1', $assessments['bodystates']);
 
         $this->dataURL->setAssessments(
             array(
@@ -219,12 +221,14 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
             ));
 
         //Validate that the settings are maintained after setting assessments
-        $this->assertEquals('', $this->dataURL->getAssessments()['gsr']);
-        $this->assertEquals('', $this->dataURL->getAssessments()['air_temp']);
-        $this->assertEquals('', $this->dataURL->getAssessments()['heartrate']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['steps']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['calories']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['skin_temp']);
-        $this->assertEquals('1', $this->dataURL->getAssessments()['bodystates']);
+        $assessments = $this->dataURL->getAssessments();
+        
+        $this->assertEquals('', $assessments['gsr']);
+        $this->assertEquals('', $assessments['air_temp']);
+        $this->assertEquals('', $assessments['heartrate']);
+        $this->assertEquals('1', $assessments['steps']);
+        $this->assertEquals('1', $assessments['calories']);
+        $this->assertEquals('1', $assessments['skin_temp']);
+        $this->assertEquals('1', $assessments['bodystates']);
     }
 }
