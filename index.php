@@ -1,12 +1,11 @@
 <?php
 namespace troussos\basis;
 
+require_once('vendor/autoload.php');
+
 use troussos\basis\DataUrl;
 use troussos\basis\User;
 
-spl_autoload_register(function ($class) {
-    include "src/" . str_replace("\\", "/", $class) . '.php';
-});
 $user = new User('i');
 
 $dataURL = new DataUrl;

@@ -1,0 +1,13 @@
+{
+    "name": "troussos/basis-data-export",
+    "type": "library",
+    "description": "Simple data exporter for the My Basis activity tracking watch",
+    "keywords": ["mybasis", "basis", "export"],
+    "homepage": "https://github.com/troussos/basis-data-export",
+    "license": "GPL-2.0+",
+    "autoload":{
+        "psr-0":{
+            "troussos": "src/"
+        }
+    }
+}

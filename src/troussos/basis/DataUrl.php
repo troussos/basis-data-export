@@ -68,13 +68,10 @@ class DataUrl {
     public function generateRequestURL($userId)
     {
         //Have all of the time intervals and limits been set?
-        if(
-            is_null($this->start_date) ||
-            is_null($this->start_offset) ||
-            is_null($this->end_offset)
-        ){
+        if(is_null($this->start_date))
+        {
             //If they haven't, throw an exception
-            throw new \LogicException('All of the data url parameters must be set before generating a URL');
+            throw new \LogicException('Start Date must be set prior to generating a URL');
         }
 
         //Run through the assessment array and concat the assessments into a set of URL parameters
@@ -117,7 +114,8 @@ class DataUrl {
             'gsr'        => false,
             'skin_temp'  => false,
             'air_temp'   => false,
-            'bodystates' => false);
+            'bodystates' => false
+        );
 
         //Loop through the passed in array and make sure that all of the assessments are listed in the $validKeys
         foreach($assessments as $key => $item)
@@ -185,7 +183,9 @@ class DataUrl {
      */
     public function setStartDate($start_date)
     {
-        if(!contains_date($start_date))
+        //Parse the date
+        $date = date_parse($start_date);
+        if (!(checkdate($date["month"], $date["day"], $date["year"])))
         {
             throw new \InvalidArgumentException('Start Date must be an ISO 8601 date string');
         }

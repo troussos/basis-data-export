@@ -9,7 +9,7 @@ use troussos\basis\DataUrl;
  * Class BasisReceiver
  * @package troussos\basis
  */
-class BasisReceiver implements BasisReciverInterface
+class BasisReceiver
 {
 
     /**
