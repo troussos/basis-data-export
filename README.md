@@ -1,4 +1,4 @@
-# Basis Data Export
+# Basis Data Export [![Build Status](https://travis-ci.org/troussos/basis-data-export.png?branch=master)](https://travis-ci.org/troussos/basis-data-export)
 
 Utility that exports and saves your Basis B1 device's uploaded sensor data.
 You can learn more about Basis at [http://www.mybasis.com/](http://www.mybasis.com/)
@@ -63,6 +63,3 @@ There are some other aggregate metrics included in the reponse such as min/max/a
 - If you want to archive data across a date range you can use curl's [ ] syntax to do it easily (thanks to [@Edrabbit](http://twitter.com/edrabbit) for the tip!). For example, to get all of May cached in /data:
 
   `curl http://localhost/basisdataexport.php?date=2013-05-[01-31]`
-
-
-
