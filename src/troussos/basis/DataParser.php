@@ -90,7 +90,23 @@ class DataParser
         $this->endTime = $rawArray['endtime'];
         $this->interval = $rawArray['interval'];
         $this->timezone = $rawArray['timezone_history'];
-        $this->bodystates = $rawArray['bodystates']; //TODO - Parse Body States
+
+        //Initalize a new array to hold the body states
+        $bodyStateArray = array();
+
+        //Loop through the exisitng body states and switch the keys
+        foreach($rawArray['bodystates'] as $bodyState)
+        {
+            $formattedBodyState = array(
+                "startTime" => $bodyState[0],
+                "endTime" => $bodyState[1],
+                "activityLevel" => $bodyState[2]
+            );
+            //Push the new body state array onto the overall array
+            array_push($bodyStateArray, $formattedBodyState);
+        }
+        //Set the body state property to the body state array
+        $this->bodystates = $bodyStateArray;
 
         //Parse the retrieved metrics
         $this->parseMetrics($rawArray);
@@ -138,5 +154,93 @@ class DataParser
         {
             $this->calories = new Calories($this->startTime, $this->interval, $rawArray['metrics']['calories']);
         }
+    }
+
+    /**
+     * @return Air Temp Object
+     */
+    public function getAirTemp()
+    {
+        return $this->airTemp;
+    }
+
+    /**
+     * @return Body State Array
+     */
+    public function getBodystates()
+    {
+        return $this->bodystates;
+    }
+
+    /**
+     * @return Calorie Object
+     */
+    public function getCalories()
+    {
+        return $this->calories;
+    }
+
+    /**
+     * @return End Time
+     */
+    public function getEndTime()
+    {
+        return $this->endTime;
+    }
+
+    /**
+     * @return GSR Object
+     */
+    public function getGsr()
+    {
+        return $this->gsr;
+    }
+
+    /**
+     * @return HeartRate Object
+     */
+    public function getHeartrate()
+    {
+        return $this->heartrate;
+    }
+
+    /**
+     * @return Interval
+     */
+    public function getInterval()
+    {
+        return $this->interval;
+    }
+
+    /**
+     * @return Skin Temp Object
+     */
+    public function getSkinTemp()
+    {
+        return $this->skinTemp;
+    }
+
+    /**
+     * @return Start Time
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
+
+    /**
+     * @return Steps Object
+     */
+    public function getSteps()
+    {
+        return $this->steps;
+    }
+
+    /**
+     * @return Timezone Array
+     */
+    public function getTimezone()
+    {
+        return $this->timezone;
     }
 }
