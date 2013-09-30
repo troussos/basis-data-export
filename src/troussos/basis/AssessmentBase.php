@@ -26,6 +26,16 @@ abstract class AssessmentBase
     private $sum;
 
     /**
+     * @var Standard Deviation of the Values
+     */
+    private $stdev;
+
+    /**
+     * @var Average of the values
+     */
+    private $avg;
+
+    /**
      * @var Array of readings. Key is the epoch timestamp of when the reading was taken
      */
     private $summary;
@@ -47,6 +57,8 @@ abstract class AssessmentBase
         $this->min = $rawData['min'];
         $this->max = $rawData['max'];
         $this->sum = $rawData['sum'];
+        $this->avg = $rawData['avg'];
+        $this->stdev = $rawData['stdev'];
 
         //Loop through the raw value array and set the keys to the epoch time, based on the start time and offset
         foreach ($rawData['values'] as $key => $item)
@@ -93,5 +105,21 @@ abstract class AssessmentBase
     public function getUnits()
     {
         return $this->units;
+    }
+
+    /**
+     * @return Average of the assessment values
+     */
+    public function getAvg()
+    {
+        return $this->avg;
+    }
+
+    /**
+     * @return Standard Deviation of the assessment values
+     */
+    public function getStdev()
+    {
+        return $this->stdev;
     }
 }
