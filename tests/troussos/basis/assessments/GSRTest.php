@@ -3,6 +3,8 @@
 
 namespace troussos\basis\assessments;
 
+use troussos\basis\assessments\GSR;
+
 /**
  * Class GSRTest
  * @package troussos\basis\assessments
@@ -11,6 +13,8 @@ class GSRTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Tests the creation of a new gsr object.
+     *
+     * @covers troussos\basis\assessments\GSR::__construct
      */
     public function testConstruct()
     {

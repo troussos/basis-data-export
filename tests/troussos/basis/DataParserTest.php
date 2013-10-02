@@ -3,6 +3,8 @@
 
 namespace troussos\basis;
 
+use troussos\basis\DataParser;
+
 /**
  * Class DataParserTest
  * @package troussos\basis
@@ -10,17 +12,18 @@ namespace troussos\basis;
 class DataParserTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var DataParser - Data Parse object to test against
+     * @var $dataParser DataParser - Data Parse object to test against
      */
     private $dataParser;
 
     /**
-     * @var array - Array of raw data that can be used to make DataParser objects
+     * @var $rawData array - Array of raw data that can be used to make DataParser objects
      */
     private $rawData;
 
     /**
      * Setup the initial dataparser and raw data object based on some test data
+     * @coversNothing
      */
     public function __construct()
     {

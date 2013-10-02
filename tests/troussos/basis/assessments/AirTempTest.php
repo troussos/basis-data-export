@@ -3,6 +3,8 @@
 
 namespace troussos\basis\assessments;
 
+use troussos\basis\assessments\AirTemp;
+
 /**
  * Class AirTempTest
  * @package troussos\basis\assessments
@@ -11,6 +13,8 @@ class AirTempTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Tests the creation of a new Air temp object.
+     *
+     * @covers troussos\basis\assessments\AirTemp::__construct
      */
     public function testConstruct()
     {

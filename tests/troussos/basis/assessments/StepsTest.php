@@ -3,6 +3,8 @@
 
 namespace troussos\basis\assessments;
 
+use troussos\basis\assessments\Steps;
+
 /**
  * Class StepsTest
  * @package troussos\basis\assessments
@@ -11,6 +13,8 @@ class StepsTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Tests the creation of a new steps object.
+     *
+     * @covers troussos\basis\assessments\Steps::__construct
      */
     public function testConstruct()
     {

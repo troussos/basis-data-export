@@ -1,7 +1,7 @@
 <?php
 namespace troussos\basis;
 
-require_once('vendor/autoload.php');
+require_once('../vendor/autoload.php');
 
 use troussos\basis\BasisReceiver;
 use troussos\basis\User;

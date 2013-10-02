@@ -15,12 +15,16 @@ class UserTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @User - User object to test against
+     * @var $user User
+     *
+     * User object to test against
      */
     private $user = null;
 
     /**
      * Setup the class level user object for tests
+     *
+     * @coversNothing
      */
     public function __construct()
     {
@@ -29,6 +33,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Check the constructor
+     *
+     * @covers troussos\basis\User::__construct
      */
     public function testConstruct()
     {
@@ -38,6 +44,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Make sure that that initialized userID is saved
+     *
+     * @covers troussos\basis\User::getUserId
      */
     public function testGetID()
     {
@@ -46,6 +54,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Check that the userID can be updated
+     *
+     * @covers troussos\basis\User::setUserId
      */
     public function testSetID()
     {

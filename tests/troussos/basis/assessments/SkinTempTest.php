@@ -3,6 +3,8 @@
 
 namespace troussos\basis\assessments;
 
+use troussos\basis\assessments\SkinTemp;
+
 /**
  * Class SkinTempTest
  * @package troussos\basis\assessments
@@ -11,6 +13,8 @@ class SkinTempTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Tests the creation of a new Skin temp object.
+     *
+     * @covers troussos\basis\assessments\SkinTemp::__construct
      */
     public function testConstruct()
     {

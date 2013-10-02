@@ -3,6 +3,8 @@
 
 namespace troussos\basis\assessments;
 
+use troussos\basis\assessments\HeartRate;
+
 /**
  * Class HeartRateTest
  * @package troussos\basis\assessments
@@ -11,6 +13,8 @@ class HeartRateTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Tests the creation of a new gsr object.
+     *
+     * @covers troussos\basis\assessments\HeartRate::__construct
      */
     public function testConstruct()
     {

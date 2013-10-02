@@ -7,18 +7,32 @@ require('vendor/autoload.php');
 use PHPUnit_Framework_TestCase;
 use troussos\basis\BasisReceiver;
 
+/**
+ * Class BasisReceiverTest
+ * @package troussos\basis
+ */
 class BasisReceiverTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * @var $basisReciever BasisReciever
+     */
     private $basisReciever;
 
-
+    /**
+     * Basic Constructor, setup a new reciever object and assign it to the class property
+     *
+     * @coversNothing
+     */
     public function __construct()
     {
         $this->basisReciever = new BasisReceiver();
     }
 
     /**
+     * Test making a request without any parameters
+     *
+     * @covers troussos\basis\BasisReceiver::makeRequest
      * @expectedException LogicException
      */
     public function testInvalidSetParamsMakeRequest()
@@ -27,6 +41,9 @@ class BasisReceiverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Make a request with an invalid user ID
+     *
+     * @covers troussos\basis\BasisReceiver::makeRequest
      * @expectedException RuntimeException
      */
     public function testInvalidUserIDMakeRequest()

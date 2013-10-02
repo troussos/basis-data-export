@@ -3,6 +3,8 @@
 
 namespace troussos\basis\assessments;
 
+use troussos\basis\assessments\Calories;
+
 /**
  * Class CaloriesTest
  * @package troussos\basis\assessments
@@ -11,6 +13,8 @@ class CaloriesTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Tests the creation of a new calories object.
+     *
+     * @covers troussos\basis\assessments\Calories::__construct
      */
     public function testConstruct()
     {

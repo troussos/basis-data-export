@@ -14,12 +14,16 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @DataUrl - Object to test against
+     * @var $dataURL DataUrl
+     *
+     * Object to test against
      */
     private $dataURL = null;
 
     /**
      * Creates an instance of the dataURL object to test against
+     *
+     * @coversNothing
      */
     public function __construct()
     {
@@ -29,6 +33,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Checks the validation on the setStartDate Method
      *
+     * @covers troussos\basis\DataUrl::setStartDate
      * @expectedException InvalidArgumentException
      */
     public function testInvalidStartDate()
@@ -38,6 +43,8 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
 
     /**
      * Checks that valid entries can be made into the setStartDate method
+     *
+     * @covers troussos\basis\DataUrl::setStartDate
      */
     public function testValidStartDate()
     {
@@ -57,6 +64,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Verify that the input is validated to be numeric
      *
+     * @covers troussos\basis\DataUrl::setInterval
      * @expectedException InvalidArgumentException
      */
     public function testInvalidNumericSetInterval()
@@ -67,6 +75,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Verify that the minimum value of the interval is validated. It should not allow values less than 60.
      *
+     * @covers troussos\basis\DataUrl::setInterval
      * @expectedException InvalidArgumentException
      */
     public function testInvalidRangeSetInterval()
@@ -76,6 +85,8 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
 
     /**
      * Verify that various valid inputs are able to be passed into the setInterval method
+     *
+     * @covers troussos\basis\DataUrl::setInterval
      */
     public function testValidSetInterval()
     {
@@ -95,6 +106,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Verify that an exception is thrown if we have not set the start date
      *
+     * @covers troussos\basis\DataUrl::generateRequestURL
      * @expectedException LogicException
      */
     public function testInvalidStartDateGenerateURL()
@@ -105,6 +117,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Check that an error is thrown if we don't pass a userID parameter
      *
+     * @covers troussos\basis\DataUrl::generateRequestURL
      * @expectedException PHPUnit_Framework_Error
      */
     public function testInvalidParameterGenerateURL()
@@ -115,6 +128,8 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
 
     /**
      * Check the generate URL method
+     *
+     * @covers troussos\basis\DataUrl::generateRequestURL
      */
     public function testValidGenerateURL()
     {
@@ -128,6 +143,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Test that an error is thrown when we pass a non-array variable
      *
+     * @covers troussos\basis\DataUrl::setAssessments
      * @expectedException PHPUnit_Framework_Error
      */
     public function testInvalidSetAssessments()
@@ -139,6 +155,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Test that an exception is thrown when we pass in an invalid array
      *
+     * @covers troussos\basis\DataUrl::setAssessments
      * @expectedException OutOfBoundsException
      */
     public function testInvalidArraySetAssessments()
@@ -150,6 +167,8 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Validate that we can update the assessments property and that it maintains the initialized values, if they
      * are not updated.
+     *
+     * @covers troussos\basis\DataUrl::setAssessments
      */
     public function testValidSetAssessments()
     {
