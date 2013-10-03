@@ -1,56 +1,70 @@
 <?php
 
-
 namespace troussos\basis;
 
 /**
  * Class AssessmentBase
+ *
+ * The base assessment class which is extended to create a more sepecifc assessments.
+ *
+ * @see AirTemp Air Tempature
+ * @see Calories Calories
+ * @see GSR Galvanic Skin Response
+ * @see HeartRate Heart Rate
+ * @see SkinTemp Skin Tempature
+ * @see Steps Steps
+ *
+ * @used-by AirTemp Calories GSR HearRate SkinTemp Steps
+ *
+ * @author Tyler Roussos <tylerroussos@gmail.com>
+ * @license GNU Public License
+ * @license http://opensource.org/licenses/GPL-2.0
  * @package troussos\basis
  */
 abstract class AssessmentBase
 {
 
     /**
-     * @var Minimum Value Recorded
+     * @var float Minimum Value Recorded
      */
     private $min;
 
     /**
-     * @var Maximum Value Recorded
+     * @var float Maximum Value Recorded
      */
     private $max;
 
     /**
-     * @var Sum of the Values
+     * @var float Sum of the Values
      */
     private $sum;
 
     /**
-     * @var Standard Deviation of the Values
+     * @var float Standard Deviation of the Values
      */
     private $stdev;
 
     /**
-     * @var Average of the values
+     * @var float Average of the values
      */
     private $avg;
 
     /**
-     * @var Array of readings. Key is the epoch timestamp of when the reading was taken
+     * @var array Array of readings. Key is the epoch timestamp of when the reading was taken
      */
     private $summary;
 
     /**
-     * @var Units that the assessment is measured in.
+     * @var string Units that the assessment is measured in.
      */
     protected $units;
 
     /**
      * Creates the assessment object with the common elements.
      *
-     * @param $startTime
-     * @param $interval
-     * @param array $rawData
+     * @param int $startTime Start time of assessment as an Epoch timestamp
+     * @param int $interval Interval at which the assessments are spread in seconds.
+     * @param array $rawData Raw data that was recieved from My Basis
      */
     public function __construct($startTime, $interval, array $rawData)
     {
@@ -68,7 +82,9 @@ abstract class AssessmentBase
     }
 
     /**
-     * @return $max
+     * Get the maximum assessment value
+     *
+     * @return float
      */
     public function getMax()
     {
@@ -76,7 +92,9 @@ abstract class AssessmentBase
     }
 
     /**
-     * @return $min
+     * Get the minimum assessment value
+     *
+     * @return float
      */
     public function getMin()
     {
@@ -84,7 +102,9 @@ abstract class AssessmentBase
     }
 
     /**
-     * @return $sum
+     * Get the sum of all of the assessments
+     *
+     * @return float
      */
     public function getSum()
     {
@@ -92,7 +112,9 @@ abstract class AssessmentBase
     }
 
     /**
-     * @return $summary
+     * Get the summary of all of the assessment readings. The timestamp of the reading is the key of the array.
+     *
+     * @return array
      */
     public function getSummary()
     {
@@ -100,6 +122,8 @@ abstract class AssessmentBase
     }
 
     /**
+     * Get the units that the readings are in
+     *
      * @return Units of the assessment
      */
     public function getUnits()
@@ -108,6 +132,8 @@ abstract class AssessmentBase
     }
 
     /**
+     * Get the avergae value of the assessments
+     *
      * @return Average of the assessment values
      */
     public function getAvg()
@@ -116,6 +142,8 @@ abstract class AssessmentBase
     }
 
     /**
+     * Get the standard deviaton of the assessment readings
+     *
      * @return Standard Deviation of the assessment values
      */
     public function getStdev()

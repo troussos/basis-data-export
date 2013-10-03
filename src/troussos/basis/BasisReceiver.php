@@ -7,18 +7,32 @@ use troussos\basis\DataUrl;
 
 /**
  * Class BasisReceiver
+ *
+ * A receiver class that is used to make the actual request to My Basis. It requires a user object and
+ * a dataurl object to be able to make this request. These objects will hold the parameters needed to
+ * make the request to MyBasis.
+ *
+ * @see User User Class
+ * @see DataUrl DataUrl Class
+ *
+ * @uses User User Class
+ * @uses DataUrl DataUrl Class
+ *
+ * @author Tyler Roussos <tylerroussos@gmail.com>
+ * @license GNU Public License
+ * @license http://opensource.org/licenses/GPL-2.0
  * @package troussos\basis
  */
 class BasisReceiver
 {
 
     /**
-     * @User
+     * @var User A user object that the request is made for.
      */
     private $user = null;
 
     /**
-     * @DataUrl
+     * @var DataUrl The dataUrl obkect that contains the parameters for making the request.
      */
     private $dataURL = null;
 
@@ -27,8 +41,8 @@ class BasisReceiver
      *
      * This method must be called prior to calling make requests, otherwise an exception is thrown.
      *
-     * @param User $user
-     * @param DataUrl $dataURL
+     * @param User $user User object whose data to fetch
+     * @param DataUrl $dataURL DataUrl which has the parameters of the request
      */
     public function setParameters(User $user, DataUrl $dataURL)
     {
@@ -39,8 +53,8 @@ class BasisReceiver
     /**
      * Get a generated URL and call the performRequest method. Return the raw response.
      *
-     * @return Raw JSON Response
-     * @throws \LogicException
+     * @return string Raw JSON Response
+     * @throws \LogicException Parameters have not been set before making a request
      * @throws \Exception
      */
     public function makeRequest()
@@ -78,9 +92,9 @@ class BasisReceiver
     /**
      * Makes a request for data from the MyBasis website based on the formed URL
      *
-     * @param $url
-     * @return mixed
-     * @throws \RuntimeException
+     * @param string $url URL to make the GET request on
+     * @return string JSON string of data from MyBasis
+     * @throws \RuntimeException Exeption is thrown if the userID is invalid or if there is an error getting the basis data
      */
     private function performBasisRequest($url)
     {

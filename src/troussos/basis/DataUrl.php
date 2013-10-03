@@ -5,43 +5,54 @@ namespace troussos\basis;
 
 /**
  * Class DataUrl
+ *
+ * A class that holds the parameters for the various types of requests that we can make to My Basis.
+ * This class will setup a URL that will pull data down the the My Basis API.
+ *
+ * @see BasisReceiver Basis Receiver
+ *
+ * @used-by BasisReceiver Basis Receiver
+ *
+ * @author Tyler Roussos <tylerroussos@gmail.com>
+ * @license GNU Public License
+ * @license http://opensource.org/licenses/GPL-2.0
  * @package troussos\basis
  */
 class DataUrl {
 
     /**
-     * @var string - The Base URL for the request (this part comes before the userId)
+     * @var string The Base URL for the request (this part comes before the userId)
      */
     private $baseURL = 'https://app.mybasis.com/api/v1/chart/';
 
     /**
-     * @var string - The static extension for the URL (this part comes after userId)
+     * @var string The static extension for the URL (this part comes after userId)
      */
     private $baseURLExtension = '.json?summary=true&units=s';
 
     /**
-     * @var - Data Granularity (60 = 1 per minute, 1 = 1 per second, etc.) Value should not be below 60,
+     * @var int Data Granularity (60 = 1 per minute, 1 = 1 per second, etc.) Value should not be below 60,
      *        no additional detail gets passed back at that level.
      */
     private $interval = 60;
 
     /**
-     * @var The start date to get assessments from. This will run from the start date until now.
+     * @var string The start date to get assessments from. This will run from the start date until now.
      */
     private $start_date = null;
 
     /**
-     * @var The offset from midnight in seconds to start pulling data
+     * @var int The offset from midnight in seconds to start pulling data
      */
     private $start_offset = 0;
 
     /**
-     * @var The offset from midnight in seconds to stop pulling data
+     * @var int The offset from midnight in seconds to stop pulling data
      */
     private $end_offset = 0;
 
     /**
-     * @var array - Array of all of the assessments and their status
+     * @var array Array of all of the assessments and their status
      */
     private $assessments = array(
         'heartrate'  => true,
@@ -61,9 +72,9 @@ class DataUrl {
      * The order of the other parameters dose not matter since they are just URL parameters. The first
      * three variables must be in that order, however, since they are forming the root URL.
      *
-     * @param $userId
-     * @return string
-     * @throws \LogicException
+     * @param string $userId The userid whose data we want to get
+     * @return string URL for the request that the class represents
+     * @throws \LogicException Start Date has not been set
      */
     public function generateRequestURL($userId)
     {
@@ -98,8 +109,9 @@ class DataUrl {
      * Validate and set the assessments. This will also maintain any assessments that have not been change with
      * their current values.
      *
-     * @param array $assessments
-     * @throws \OutOfBoundsException
+     * @param array $assessments An array of the assessments to get
+     * @return $this
+     * @throws \OutOfBoundsException The assessment is not a valid My Bais Assessment
      */
     public function setAssessments(array $assessments)
     {
@@ -134,10 +146,14 @@ class DataUrl {
         }
         //If all is good, then set the class property and merge the keys that were not set with the previous values
         $this->assessments = array_merge($assessments, $oldAssessments);
+
+        return $this;
     }
 
     /**
-     * @return array
+     * Get the current list of assessments and their getting status (true or false)
+     *
+     * @return array Array of assessments
      */
     public function getAssessments()
     {
@@ -147,8 +163,9 @@ class DataUrl {
     /**
      * Set the interval and make sure that it is both above 60 and is numeric
      *
-     * @param $interval
-     * @throws \InvalidArgumentException
+     * @param int $interval Interval of seconds between each data point
+     * @return $this
+     * @throws \InvalidArgumentException The parameter passed is not valid
      */
     public function setInterval($interval)
     {
@@ -165,10 +182,14 @@ class DataUrl {
         }
 
         $this->interval = $interval;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get the interval of seconds between each assessment
+     *
+     * @return int Interval of seconds between each assessment
      */
     public function getInterval()
     {
@@ -178,8 +199,9 @@ class DataUrl {
     /**
      * Sets the start date and validates it as ISO 8601
      *
-     * @param $start_date
-     * @throws \InvalidArgumentException
+     * @param string $start_date ISO 8601 date string
+     * @return $this
+     * @throws \InvalidArgumentException Passed string is not ISO 8601
      */
     public function setStartDate($start_date)
     {
@@ -190,10 +212,14 @@ class DataUrl {
             throw new \InvalidArgumentException('Start Date must be an ISO 8601 date string');
         }
         $this->start_date = $start_date;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get the start date
+     *
+     * @return string ISO 8601 string
      */
     public function getStartDate()
     {

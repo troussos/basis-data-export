@@ -11,22 +11,42 @@ use troussos\basis\assessments\Steps;
 
 /**
  * Class DataParser
+ *
+ * A class which parses the data recieved from the data reciever.
+ *
+ * @see AirTemp Air Tempature
+ * @see Calories Calories
+ * @see GSR Galvanic Skin Response
+ * @see HeartRate Heart Rate
+ * @see SkinTemp Skin Tempature
+ * @see Steps Steps
+ *
+ * @uses AirTemp Air Tempature
+ * @uses Calories Calories
+ * @uses GSR GSR
+ * @uses HearRate Heart Rate
+ * @uses SkinTemp Skin Tempature
+ * @uses Steps Steps
+ *
+ * @author Tyler Roussos <tylerroussos@gmail.com>
+ * @license GNU Public License
+ * @license http://opensource.org/licenses/GPL-2.0
  * @package troussos\basis
  */
 class DataParser
 {
     /**
-     * @var - Begining point of the assessments
+     * @var int Begining point of the assessments as an epoch timestamp
      */
     private $startTime;
 
     /**
-     * @var - End point of the assessments
+     * @var int End point of the assessments as an epoch timestamp
      */
     private $endTime;
 
     /**
-     * @var - How many seconds each index equals.
+     * @var int How many seconds each index equals.
      *
      * For example if interval is set to 60, each assessment is taken 60 seconds apart.
      * So, in the value array, an index of 1 means $startTime + 60.
@@ -35,50 +55,50 @@ class DataParser
     private $interval;
 
     /**
-     * @var - Copy of the timezone array from the response.
-     *        Only need if the device's offset is important since the start and stop times are epoch.
+     * @var array Copy of the timezone array from the response.
+     *            Only need if the device's offset is important since the start and stop times are epoch.
      */
     private $timezone;
 
     /**
-     * @var - Body State Object. Hold a a list of the different active states amongst other things.
+     * @var array Body State Object. Hold a a list of the different active states amongst other things.
      */
     private $bodystates;
 
     /**
-     * @var null - HearRate object, if hearRate was retrieved.
+     * @var HeartRate HearRate object, if hearRate was retrieved.
      */
     private $heartrate = null;
 
     /**
-     * @var null - Steps Object, if steps were retrieved.
+     * @var Steps Steps Object, if steps were retrieved.
      */
     private $steps = null;
 
     /**
-     * @var null - Skin Temperature object if skin temperature was retrieved.
+     * @var SkinTemp Skin Temperature object if skin temperature was retrieved.
      */
     private $skinTemp = null;
 
     /**
-     * @var null - Air Temperature object if air temperature was retrieved.
+     * @var AirTemp Air Temperature object if air temperature was retrieved.
      */
     private $airTemp = null;
 
     /**
-     * @var null - Calorie object if calories were retrieved
+     * @var Calories Calorie object if calories were retrieved
      */
     private $calories = null;
 
     /**
-     * @var null - Galvanic Skin response object if GSR was retrieved.
+     * @var GSR Galvanic Skin response object if GSR was retrieved.
      */
     private $gsr = null;
 
     /**
      * Sets up the parsedData object
      *
-     * @param $rawData
+     * @param string $rawData Raw JSON string recieved from My Basis
      */
     public function __construct($rawData)
     {
@@ -115,7 +135,7 @@ class DataParser
     /**
      * Parses the Metrics into the appropriate objects, if that metrics has been retrieved
      *
-     * @param array $rawArray
+     * @param array $rawArray Raw array from My Basis. Basically their JSON decoded into a php array
      */
     private function parseMetrics(array $rawArray)
     {
@@ -157,7 +177,9 @@ class DataParser
     }
 
     /**
-     * @return Air Temp Object
+     * Get the air tempature object
+     *
+     * @return AirTemp Air Temp Object
      */
     public function getAirTemp()
     {
@@ -165,7 +187,9 @@ class DataParser
     }
 
     /**
-     * @return Body State Array
+     * Get the body states array
+     *
+     * @return array Body State Array
      */
     public function getBodystates()
     {
@@ -173,7 +197,9 @@ class DataParser
     }
 
     /**
-     * @return Calorie Object
+     * Get the calories object
+     *
+     * @return Calories Calorie Object
      */
     public function getCalories()
     {
@@ -181,7 +207,9 @@ class DataParser
     }
 
     /**
-     * @return End Time
+     * Get the end time
+     *
+     * @return int End Time
      */
     public function getEndTime()
     {
@@ -189,7 +217,9 @@ class DataParser
     }
 
     /**
-     * @return GSR Object
+     * Get the GSR Object
+     *
+     * @return GSR GSR Object
      */
     public function getGsr()
     {
@@ -197,7 +227,9 @@ class DataParser
     }
 
     /**
-     * @return HeartRate Object
+     * Get the heart rate object
+     *
+     * @return HeartRate Heart Rate Object
      */
     public function getHeartrate()
     {
@@ -205,7 +237,9 @@ class DataParser
     }
 
     /**
-     * @return Interval
+     * Get the assessment interval
+     *
+     * @return int Interval
      */
     public function getInterval()
     {
@@ -213,7 +247,9 @@ class DataParser
     }
 
     /**
-     * @return Skin Temp Object
+     * Get the skin tempature object
+     *
+     * @return SkinTemp Skin Temp Object
      */
     public function getSkinTemp()
     {
@@ -221,7 +257,9 @@ class DataParser
     }
 
     /**
-     * @return Start Time
+     * Get the start time
+     *
+     * @return int Start Time
      */
     public function getStartTime()
     {
@@ -229,7 +267,9 @@ class DataParser
     }
 
     /**
-     * @return Steps Object
+     * Get the steps object
+     *
+     * @return Steps Steps Object
      */
     public function getSteps()
     {
@@ -237,7 +277,9 @@ class DataParser
     }
 
     /**
-     * @return Timezone Array
+     * Get the timezoen array
+     *
+     * @return array Timezone Array
      */
     public function getTimezone()
     {
