@@ -130,7 +130,7 @@ class DataUrl {
         );
 
         //Loop through the passed in array and make sure that all of the assessments are listed in the $validKeys
-        foreach($assessments as $key => $item)
+        foreach(array_keys($assessments) as $key)
         {
             //Check if the array key exists in $validKeys
             if(!array_key_exists($key, $validKeys))

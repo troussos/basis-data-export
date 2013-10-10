@@ -94,7 +94,8 @@ class BasisReceiver
      *
      * @param string $url URL to make the GET request on
      * @return string JSON string of data from MyBasis
-     * @throws \RuntimeException Exeption is thrown if the userID is invalid or if there is an error getting the basis data
+     * @throws \RuntimeException Exeption is thrown if the userID is invalid or if there
+     *         is an error getting the basis data
      */
     private function performBasisRequest($url)
     {
@@ -119,7 +120,10 @@ class BasisReceiver
         }
         elseif ($responseCode !== 200)
         {
-            throw new \RuntimeException('Error retrieving Basis Data - Server Responded with a Response Code of ' . $responseCode);
+            throw new \RuntimeException(
+                'Error retrieving Basis Data - Server Responded with a Response Code of ' .
+                $responseCode
+            );
         }
         else
         {

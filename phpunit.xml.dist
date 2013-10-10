@@ -4,7 +4,7 @@
          syntaxCheck            ="false">
     <testsuites>
         <testsuite name="Tests">
-            <directory suffix=".php">.</directory>
+            <directory suffix=".php">tests/.</directory>
         </testsuite>
     </testsuites>
     <filter>
