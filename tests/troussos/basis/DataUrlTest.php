@@ -45,6 +45,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
      * Checks that valid entries can be made into the setStartDate method
      *
      * @covers troussos\basis\DataUrl::setStartDate
+     * @covers troussos\basis\DataUrl::getStartDate
      */
     public function testValidStartDate()
     {
@@ -87,6 +88,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
      * Verify that various valid inputs are able to be passed into the setInterval method
      *
      * @covers troussos\basis\DataUrl::setInterval
+     * @covers troussos\basis\DataUrl::getInterval
      */
     public function testValidSetInterval()
     {
@@ -169,6 +171,7 @@ class DataUrlTest extends PHPUnit_Framework_TestCase
      * are not updated.
      *
      * @covers troussos\basis\DataUrl::setAssessments
+     * @covers troussos\basis\DataUrl::getAssessments
      */
     public function testValidSetAssessments()
     {

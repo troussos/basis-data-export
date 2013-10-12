@@ -15,6 +15,7 @@ class SkinTempTest extends \PHPUnit_Framework_TestCase
      * Tests the creation of a new Skin temp object.
      *
      * @covers troussos\basis\assessments\SkinTemp::__construct
+     * @covers troussos\basis\AssessmentBase::__construct
      */
     public function testConstruct()
     {

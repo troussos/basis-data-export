@@ -15,6 +15,7 @@ class HeartRateTest extends \PHPUnit_Framework_TestCase
      * Tests the creation of a new gsr object.
      *
      * @covers troussos\basis\assessments\HeartRate::__construct
+     * @covers troussos\basis\AssessmentBase::__construct
      */
     public function testConstruct()
     {

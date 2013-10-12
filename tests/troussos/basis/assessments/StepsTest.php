@@ -15,6 +15,7 @@ class StepsTest extends \PHPUnit_Framework_TestCase
      * Tests the creation of a new steps object.
      *
      * @covers troussos\basis\assessments\Steps::__construct
+     * @covers troussos\basis\AssessmentBase::__construct
      */
     public function testConstruct()
     {
