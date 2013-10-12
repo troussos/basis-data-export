@@ -38,62 +38,65 @@ class DataParser
     /**
      * @var int Begining point of the assessments as an epoch timestamp
      */
-    private $startTime;
+    private $_startTime;
 
     /**
      * @var int End point of the assessments as an epoch timestamp
      */
-    private $endTime;
+    private $_endTime;
 
     /**
      * @var int How many seconds each index equals.
      *
-     * For example if interval is set to 60, each assessment is taken 60 seconds apart.
-     * So, in the value array, an index of 1 means $startTime + 60.
+     * For example if interval is set to 60, each assessment is taken
+     * 60 seconds apart. So, in the value array,
+     * an index of 1 means $startTime + 60.
      * An index of 2 means $startTime + 120.
      */
-    private $interval;
+    private $_interval;
 
     /**
      * @var array Copy of the timezone array from the response.
-     *            Only need if the device's offset is important since the start and stop times are epoch.
+     *            Only need if the device's offset is important
+     *            since the start and stop times are epoch.
      */
-    private $timezone;
+    private $_timezone;
 
     /**
-     * @var array Body State Object. Hold a a list of the different active states amongst other things.
+     * @var array Body State Object. Hold a a list of the different
+     *            active states amongst other things.
      */
-    private $bodystates;
+    private $_bodystates;
 
     /**
      * @var HeartRate HearRate object, if hearRate was retrieved.
      */
-    private $heartrate = null;
+    private $_heartrate = null;
 
     /**
      * @var Steps Steps Object, if steps were retrieved.
      */
-    private $steps = null;
+    private $_steps = null;
 
     /**
      * @var SkinTemp Skin Temperature object if skin temperature was retrieved.
      */
-    private $skinTemp = null;
+    private $_skinTemp = null;
 
     /**
      * @var AirTemp Air Temperature object if air temperature was retrieved.
      */
-    private $airTemp = null;
+    private $_airTemp = null;
 
     /**
      * @var Calories Calorie object if calories were retrieved
      */
-    private $calories = null;
+    private $_calories = null;
 
     /**
      * @var GSR Galvanic Skin response object if GSR was retrieved.
      */
-    private $gsr = null;
+    private $_gsr = null;
 
     /**
      * Sets up the parsedData object
@@ -106,10 +109,10 @@ class DataParser
         $rawArray = json_decode($rawData, true);
 
         //Pull the standard data out of the raw data array
-        $this->startTime = $rawArray['starttime'];
-        $this->endTime = $rawArray['endtime'];
-        $this->interval = $rawArray['interval'];
-        $this->timezone = $rawArray['timezone_history'];
+        $this->_startTime = $rawArray['starttime'];
+        $this->_endTime = $rawArray['endtime'];
+        $this->_interval = $rawArray['interval'];
+        $this->_timezone = $rawArray['timezone_history'];
 
         //Initalize a new array to hold the body states
         $bodyStateArray = array();
@@ -126,54 +129,83 @@ class DataParser
             array_push($bodyStateArray, $formattedBodyState);
         }
         //Set the body state property to the body state array
-        $this->bodystates = $bodyStateArray;
+        $this->_bodystates = $bodyStateArray;
 
         //Parse the retrieved metrics
-        $this->parseMetrics($rawArray);
+        $this->_parseMetrics($rawArray);
     }
 
     /**
-     * Parses the Metrics into the appropriate objects, if that metrics has been retrieved
+     * Parses the Metrics into the appropriate objects,
+     * if that metrics has been retrieved
      *
-     * @param array $rawArray Raw array from My Basis. Basically their JSON decoded into a php array
+     * @param array $rawArray Raw array from My Basis.
+     *                        Basically their JSON decoded into a php array
+     *
+     * @return $this
      */
-    private function parseMetrics(array $rawArray)
+    private function _parseMetrics(array $rawArray)
     {
         //If hearrate was pulled, then process the hearrate data
         if(isset($rawArray['metrics']['heartrate']))
         {
-            $this->heartrate = new HeartRate($this->startTime, $this->interval, $rawArray['metrics']['heartrate']);
+            $this->_heartrate = new HeartRate(
+                $this->_startTime,
+                $this->_interval,
+                $rawArray['metrics']['heartrate']
+            );
         }
 
         //If steps was pulled, then process the steps data
         if(isset($rawArray['metrics']['steps']))
         {
-            $this->steps = new Steps($this->startTime, $this->interval, $rawArray['metrics']['steps']);
+            $this->_steps = new Steps(
+                $this->_startTime,
+                $this->_interval,
+                $rawArray['metrics']['steps']
+            );
         }
 
         //If gsr was pulled, then process the gsr data
         if(isset($rawArray['metrics']['gsr']))
         {
-            $this->gsr = new GSR($this->startTime, $this->interval, $rawArray['metrics']['gsr']);
+            $this->_gsr = new GSR(
+                $this->_startTime,
+                $this->_interval,
+                $rawArray['metrics']['gsr']
+            );
         }
 
         //If skintemp was pulled, then process the skintemp data
         if(isset($rawArray['metrics']['skin_temp']))
         {
-            $this->skinTemp = new SkinTemp($this->startTime, $this->interval, $rawArray['metrics']['skin_temp']);
+            $this->_skinTemp = new SkinTemp(
+                $this->_startTime,
+                $this->_interval,
+                $rawArray['metrics']['skin_temp']
+            );
         }
 
         //If airtemp was pulled, then process the airtemp data
         if(isset($rawArray['metrics']['air_temp']))
         {
-            $this->airTemp = new AirTemp($this->startTime, $this->interval, $rawArray['metrics']['air_temp']);
+            $this->_airTemp = new AirTemp(
+                $this->_startTime,
+                $this->_interval,
+                $rawArray['metrics']['air_temp']
+            );
         }
 
         //If calories was pulled, then process the calories data
         if(isset($rawArray['metrics']['calories']))
         {
-            $this->calories = new Calories($this->startTime, $this->interval, $rawArray['metrics']['calories']);
+            $this->_calories = new Calories(
+                $this->_startTime,
+                $this->_interval,
+                $rawArray['metrics']['calories']
+            );
         }
+        return $this;
     }
 
     /**
@@ -183,7 +215,7 @@ class DataParser
      */
     public function getAirTemp()
     {
-        return $this->airTemp;
+        return $this->_airTemp;
     }
 
     /**
@@ -193,7 +225,7 @@ class DataParser
      */
     public function getBodystates()
     {
-        return $this->bodystates;
+        return $this->_bodystates;
     }
 
     /**
@@ -203,7 +235,7 @@ class DataParser
      */
     public function getCalories()
     {
-        return $this->calories;
+        return $this->_calories;
     }
 
     /**
@@ -213,7 +245,7 @@ class DataParser
      */
     public function getEndTime()
     {
-        return $this->endTime;
+        return $this->_endTime;
     }
 
     /**
@@ -223,7 +255,7 @@ class DataParser
      */
     public function getGsr()
     {
-        return $this->gsr;
+        return $this->_gsr;
     }
 
     /**
@@ -233,7 +265,7 @@ class DataParser
      */
     public function getHeartrate()
     {
-        return $this->heartrate;
+        return $this->_heartrate;
     }
 
     /**
@@ -243,7 +275,7 @@ class DataParser
      */
     public function getInterval()
     {
-        return $this->interval;
+        return $this->_interval;
     }
 
     /**
@@ -253,7 +285,7 @@ class DataParser
      */
     public function getSkinTemp()
     {
-        return $this->skinTemp;
+        return $this->_skinTemp;
     }
 
     /**
@@ -263,7 +295,7 @@ class DataParser
      */
     public function getStartTime()
     {
-        return $this->startTime;
+        return $this->_startTime;
     }
 
     /**
@@ -273,7 +305,7 @@ class DataParser
      */
     public function getSteps()
     {
-        return $this->steps;
+        return $this->_steps;
     }
 
     /**
@@ -283,6 +315,6 @@ class DataParser
      */
     public function getTimezone()
     {
-        return $this->timezone;
+        return $this->_timezone;
     }
 }

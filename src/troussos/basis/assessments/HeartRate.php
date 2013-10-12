@@ -22,11 +22,13 @@ use troussos\basis\AssessmentBase;
 class HeartRate extends AssessmentBase
 {
     /**
-     * Set the units for the assessment and call the parent constructor to parse the data.
+     * Set the units for the assessment and call the parent constructor
+     * to parse the data.
      *
-     * @param int $startTime Epoch Representation of the start time
-     * @param int $interval Interval at which the assessments are spaced in seconds
-     * @param array $rawData The raw data from My Basis
+     * @param int   $startTime Epoch Representation of the start time
+     * @param int   $interval  Interval at which the assessments are spaced
+     *                         in seconds
+     * @param array $rawData   The raw data from My Basis
      */
     public function __construct($startTime, $interval, array $rawData)
     {

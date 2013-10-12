@@ -5,7 +5,8 @@ namespace troussos\basis;
 /**
  * Class AssessmentBase
  *
- * The base assessment class which is extended to create a more sepecifc assessments.
+ * The base assessment class which is extended to create a more
+ * sepecifc assessments.
  *
  * @see AirTemp Air Tempature
  * @see Calories Calories
@@ -27,32 +28,33 @@ abstract class AssessmentBase
     /**
      * @var float Minimum Value Recorded
      */
-    private $min;
+    private $_min;
 
     /**
      * @var float Maximum Value Recorded
      */
-    private $max;
+    private $_max;
 
     /**
      * @var float Sum of the Values
      */
-    private $sum;
+    private $_sum;
 
     /**
      * @var float Standard Deviation of the Values
      */
-    private $stdev;
+    private $_stdev;
 
     /**
      * @var float Average of the values
      */
-    private $avg;
+    private $_avg;
 
     /**
-     * @var array Array of readings. Key is the epoch timestamp of when the reading was taken
+     * @var array Array of readings.
+     *      Key is the epoch timestamp of when the reading was taken
      */
-    private $summary;
+    private $_summary;
 
     /**
      * @var string Units that the assessment is measured in.
@@ -62,22 +64,23 @@ abstract class AssessmentBase
     /**
      * Creates the assessment object with the common elements.
      *
-     * @param int $startTime Start time of assessment as an Epoch timestamp
-     * @param int $interval Interval at which the assessments are spread in seconds.
-     * @param array $rawData Raw data that was recieved from My Basis
+     * @param int   $startTime Start time of assessment as an Epoch timestamp
+     * @param int   $interval  Interval which the assessments are spread, second
+     * @param array $rawData   Raw data that was recieved from My Basis
      */
     public function __construct($startTime, $interval, array $rawData)
     {
-        $this->min = $rawData['min'];
-        $this->max = $rawData['max'];
-        $this->sum = $rawData['sum'];
-        $this->avg = $rawData['avg'];
-        $this->stdev = $rawData['stdev'];
+        $this->_min = $rawData['min'];
+        $this->_max = $rawData['max'];
+        $this->_sum = $rawData['sum'];
+        $this->_avg = $rawData['avg'];
+        $this->_stdev = $rawData['stdev'];
 
-        //Loop through the raw value array and set the keys to the epoch time, based on the start time and offset
+        //Loop through the raw value array and set the keys to the epoch time,
+        //based on the start time and offset
         foreach ($rawData['values'] as $key => $item)
         {
-            $this->summary[$startTime + ($key * $interval)] = $item;
+            $this->_summary[$startTime + ($key * $interval)] = $item;
         }
     }
 
@@ -88,7 +91,7 @@ abstract class AssessmentBase
      */
     public function getMax()
     {
-        return $this->max;
+        return $this->_max;
     }
 
     /**
@@ -98,7 +101,7 @@ abstract class AssessmentBase
      */
     public function getMin()
     {
-        return $this->min;
+        return $this->_min;
     }
 
     /**
@@ -108,17 +111,18 @@ abstract class AssessmentBase
      */
     public function getSum()
     {
-        return $this->sum;
+        return $this->_sum;
     }
 
     /**
-     * Get the summary of all of the assessment readings. The timestamp of the reading is the key of the array.
+     * Get the summary of all of the assessment readings. The timestamp of the
+     * reading is the key of the array.
      *
      * @return array
      */
     public function getSummary()
     {
-        return $this->summary;
+        return $this->_summary;
     }
 
     /**
@@ -138,7 +142,7 @@ abstract class AssessmentBase
      */
     public function getAvg()
     {
-        return $this->avg;
+        return $this->_avg;
     }
 
     /**
@@ -148,6 +152,6 @@ abstract class AssessmentBase
      */
     public function getStdev()
     {
-        return $this->stdev;
+        return $this->_stdev;
     }
 }

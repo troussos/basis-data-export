@@ -22,11 +22,13 @@ use troussos\basis\AssessmentBase;
 class Steps extends AssessmentBase
 {
     /**
-     * Set the units for the assessment and call the parent constructor to parse the data.
+     * Set the units for the assessment and call the parent
+     * constructor to parse the data.
      *
-     * @param int $startTime The start time of the assessment as an epoch
-     * @param int $interval The interval at which the assessments are spaced in seconds
-     * @param array $rawData Raw data from My Basis
+     * @param int   $startTime The start time of the assessment as an epoch
+     * @param int   $interval  The interval at which the assessments are
+     *                         spaced in seconds
+     * @param array $rawData   Raw data from My Basis
      */
     public function __construct($startTime, $interval, array $rawData)
     {

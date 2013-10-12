@@ -1,12 +1,15 @@
 <?php
-
+/**
+ * @package basisExport
+ */
 namespace troussos\basis;
 
 /**
  * Class User
  *
- * A class to represent the user. Currently it is not nessecary, but it was built into the library
- * in the event future expansion of the user occurs.
+ * A class to represent the user. Currently it is not nessecary,
+ * but it was built into the library in the event future expansion of
+ * the user occurs.
  *
  * @see BasisReciver Basis Reciver
  *
@@ -17,12 +20,13 @@ namespace troussos\basis;
  * @license http://opensource.org/licenses/GPL-2.0
  * @package troussos\basis
  */
-class User {
+class User
+{
 
     /**
      * @var string Basis User ID
      */
-    private $userId;
+    private $_userId;
 
     /**
      * Set the class level userId
@@ -31,19 +35,19 @@ class User {
      */
     public function __construct($id)
     {
-        $this->userId = $id;
+        $this->_userId = $id;
     }
 
     /**
-     *
      * Set the class level userId
      *
      * @param string $userId My Basis User Id
+     *
      * @return $this
      */
     public function setUserId($userId)
     {
-        $this->userId = $userId;
+        $this->_userId = $userId;
 
         return $this;
     }
@@ -55,6 +59,6 @@ class User {
      */
     public function getUserId()
     {
-        return $this->userId;
+        return $this->_userId;
     }
 }

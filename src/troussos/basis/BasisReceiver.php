@@ -8,9 +8,9 @@ use troussos\basis\DataUrl;
 /**
  * Class BasisReceiver
  *
- * A receiver class that is used to make the actual request to My Basis. It requires a user object and
- * a dataurl object to be able to make this request. These objects will hold the parameters needed to
- * make the request to MyBasis.
+ * A receiver class that is used to make the actual request to My Basis. It
+ * requires a user object and a dataurl object to be able to make this request.
+ * These objects will hold the parameters needed to make the request to MyBasis.
  *
  * @see User User Class
  * @see DataUrl DataUrl Class
@@ -29,56 +29,73 @@ class BasisReceiver
     /**
      * @var User A user object that the request is made for.
      */
-    private $user = null;
+    private $_user = null;
 
     /**
-     * @var DataUrl The dataUrl obkect that contains the parameters for making the request.
+     * @var DataUrl The dataUrl obkect that contains the parameters for
+     *      making the request.
      */
-    private $dataURL = null;
+    private $_dataURL = null;
 
     /**
      * Initialize the User and DataURL variables.
      *
-     * This method must be called prior to calling make requests, otherwise an exception is thrown.
+     * This method must be called prior to calling make requests,
+     * otherwise an exception is thrown.
      *
-     * @param User $user User object whose data to fetch
+     * @param User    $user    User object whose data to fetch
      * @param DataUrl $dataURL DataUrl which has the parameters of the request
+     *
+     * @return $this
      */
     public function setParameters(User $user, DataUrl $dataURL)
     {
-        $this->user = $user;
-        $this->dataURL = $dataURL;
+        $this->_user = $user;
+        $this->_dataURL = $dataURL;
+
+        return $this;
     }
 
     /**
-     * Get a generated URL and call the performRequest method. Return the raw response.
+     * Get a generated URL and call the performRequest method.
+     * Return the raw response.
      *
-     * @return string Raw JSON Response
-     * @throws \LogicException Parameters have not been set before making a request
+     * @throws \LogicException Parameters have not been set before
+     *                         making a request
      * @throws \Exception
+     * @return string Raw JSON Response
      */
     public function makeRequest()
     {
         //Has setParameters been called?
-        if(is_null($this->user) || is_null($this->dataURL))
+        if(is_null($this->_user) || is_null($this->_dataURL))
         {
             //If not, then throw an exception
-            throw new \LogicException('Parameters must be set before making a request');
+            throw new \LogicException(
+                'Parameters must be set before making a request'
+            );
         }
 
         //Try to generate the URL
         try
         {
-            $url = $this->dataURL->generateRequestURL($this->user->getUserId());
+            $url = $this->_dataURL->generateRequestURL(
+                $this->_user->getUserId()
+            );
         }
         catch (\Exception $e)
         {
-            //Check if the exception being thrown is because we have not set a start date.
+            //Check if the exception being thrown is because we have not
+            //set a start date.
             if($e->getCode() === 45)
             {
                 //If that's the case, then set a generic start date to yesterday
-                $this->dataURL->setStartDate(date('Y-m-d', strtotime('-1 day', time())));
-                $url = $this->dataURL->generateRequestURL($this->user->getUserId());
+                $this->_dataURL->setStartDate(
+                    date('Y-m-d', strtotime('-1 day', time()))
+                );
+                $url = $this->_dataURL->generateRequestURL(
+                    $this->_user->getUserId()
+                );
             }
             else
             {
@@ -86,18 +103,19 @@ class BasisReceiver
                 throw $e;
             }
         }
-        return $this->performBasisRequest($url);
+        return $this->_performBasisRequest($url);
     }
 
     /**
      * Makes a request for data from the MyBasis website based on the formed URL
      *
      * @param string $url URL to make the GET request on
+     *
+     * @throws \RuntimeException Exeption is thrown if the userID is invalid
+     *                           or if there is an error getting the basis data
      * @return string JSON string of data from MyBasis
-     * @throws \RuntimeException Exeption is thrown if the userID is invalid or if there
-     *         is an error getting the basis data
      */
-    private function performBasisRequest($url)
+    private function _performBasisRequest($url)
     {
         //Creat a CURL object
         $ch = curl_init($url);
@@ -121,7 +139,8 @@ class BasisReceiver
         elseif ($responseCode !== 200)
         {
             throw new \RuntimeException(
-                'Error retrieving Basis Data - Server Responded with a Response Code of ' .
+                'Error retrieving Basis Data -
+                Server Responded with a Response Code of ' .
                 $responseCode
             );
         }
