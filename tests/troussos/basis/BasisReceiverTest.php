@@ -53,4 +53,16 @@ class BasisReceiverTest extends \PHPUnit_Framework_TestCase
         $this->basisReciever->setParameters($user, $dataURLs);
         $this->basisReciever->makeRequest();
     }
+
+    /**
+     * Check that we can set the Parameters and an error is not thrown
+     *
+     * @covers troussos\basis\BasisReceiver::setParameters
+     */
+    public function testSetParameters()
+    {
+        $user = new User('1');
+        $dataURLs = new DataUrl();
+        $this->basisReciever->setParameters($user, $dataURLs);
+    }
 }
