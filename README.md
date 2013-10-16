@@ -3,7 +3,7 @@
 Utility that exports and saves your Basis B1 device's uploaded sensor data.
 You can learn more about Basis at [http://www.mybasis.com/](http://www.mybasis.com/)
 
-This project is a fork of <Original Project>.
+This project is a fork of [basis-data-export](https://github.com/btroia/basis-data-export).
 
 ## Instructions
 
