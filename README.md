@@ -3,6 +3,8 @@
 Utility that exports and saves your Basis B1 device's uploaded sensor data.
 You can learn more about Basis at [http://www.mybasis.com/](http://www.mybasis.com/)
 
+This project is a fork of <Original Project>.
+
 ## Instructions
 
 ### Finding Your Basis User ID
@@ -17,7 +19,7 @@ You can learn more about Basis at [http://www.mybasis.com/](http://www.mybasis.c
 
 - Go to the "Data" menu and select "Details":
 
-![basis export step 3](http://www.quantifiedbob.com/2013/basis-screenshots/export3.png) 
+![basis export step 3](http://www.quantifiedbob.com/2013/basis-screenshots/export3.png)
 
 - Click on the "Network" tab in the Developer Tools frame and reload the page:
 

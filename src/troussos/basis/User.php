@@ -1,6 +1,11 @@
 <?php
 /**
- * @package basisExport
+ * @category biosensors
+ * @package Basisexport
+ * @author Tyler Roussos <tylerroussos@gmail.com>
+ * @license http://opensource.org/licenses/GPL-2.0 GPLv2
+ * @version GIT: 0d175b2a66a129694395f99971bf6600fc053374
+ * @link http://github.com/troussos/basis-export
  */
 namespace troussos\basis;
 
@@ -15,10 +20,6 @@ namespace troussos\basis;
  *
  * @used-by BasisReciver Basis Reciver
  *
- * @author Tyler Roussos <tylerroussos@gmail.com>
- * @license GNU Public License
- * @license http://opensource.org/licenses/GPL-2.0
- * @package troussos\basis
  */
 class User
 {
