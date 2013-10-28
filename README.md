@@ -5,6 +5,8 @@ You can learn more about Basis at [http://www.mybasis.com/](http://www.mybasis.c
 
 This project is a fork of [basis-data-export](https://github.com/btroia/basis-data-export).
 
+Much of the documentation on how to use the library comes in the form of PHPDoc comments and through the demo app. To test out pulling data with the demo app, subsitute your My Basis ID for the '1' that can be found on line 10. From there, you can dump out the $parsedData variable or use it for other data processing. This should give a loose idea as to how the library works and how to use it.
+
 ## Instructions
 
 ### Finding Your Basis User ID
@@ -30,22 +32,6 @@ Scroll down the list of network requests and look for a request that beings with
 
 The letters after "...chart/" and preceding ".json?..." are your Basis user id! Note this string.
 
-### Exporting Your Basis Data to Your Computer
-
-- Set the $basis_userid variable in the script to your Basis user id from the previous step.
-- Run the script from an executable location. The easiest way is to place it under your webserver document root, but CURL also works.
-- By default, the script will export data from the previous day. You can specify the date you would like to export by appending "?date=YYYY-MM-DD" to the script URL (change YYYY-MM-DD to the actual date you would like to export)
-
-![basis export step 5a](http://www.quantifiedbob.com/2013/basis-screenshots/export5a.png)
-
-![basis export step 5b](http://www.quantifiedbob.com/2013/basis-screenshots/export5b.png)
-
-- Your data will be saved in JSON format in the "data/" folder in the format "basis-data-YYYY-MM-DD.json"
-
-![basis export step 6](http://www.quantifiedbob.com/2013/basis-screenshots/export6.png)
-
-- That's it! (for now).
-
 ## Data Values
 
 Basis currently returns the following data points. They will represent an average (for heart rate) or sum (steps) over the previous 1-minute period:
@@ -59,9 +45,3 @@ Basis currently returns the following data points. They will represent an averag
 - Air Temperature - air temperatute (degrees F)
 
 There are some other aggregate metrics included in the reponse such as min/max/average/standard deviation metrics for each set of data.
-
-### Tips
-- You can set up a cron to run once per day to automatically grab your previous day's data (assuming you are syncing your device each day)
-- If you want to archive data across a date range you can use curl's [ ] syntax to do it easily (thanks to [@Edrabbit](http://twitter.com/edrabbit) for the tip!). For example, to get all of May cached in /data:
-
-  `curl http://localhost/basisdataexport.php?date=2013-05-[01-31]`
