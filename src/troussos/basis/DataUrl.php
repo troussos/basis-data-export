@@ -74,13 +74,13 @@ class DataUrl
      * @var array Array of all of the assessments and their status
      */
     private $_assessments = array(
-        'heartrate'  => true,
-        'steps'      => true,
-        'calories'   => true,
-        'gsr'        => true,
-        'skin_temp'  => true,
-        'air_temp'   => true,
-        'bodystates' => true
+        'heartrate'  => TRUE,
+        'steps'      => TRUE,
+        'calories'   => TRUE,
+        'gsr'        => TRUE,
+        'skin_temp'  => TRUE,
+        'air_temp'   => TRUE,
+        'bodystates' => TRUE
     );
 
     /**
@@ -149,13 +149,13 @@ class DataUrl
 
         //List out the valid keys
         $validKeys = array(
-            'heartrate'  => false,
-            'steps'      => false,
-            'calories'   => false,
-            'gsr'        => false,
-            'skin_temp'  => false,
-            'air_temp'   => false,
-            'bodystates' => false
+            'heartrate'  => FALSE,
+            'steps'      => FALSE,
+            'calories'   => FALSE,
+            'gsr'        => FALSE,
+            'skin_temp'  => FALSE,
+            'air_temp'   => FALSE,
+            'bodystates' => FALSE
         );
 
         //Loop through the passed in array and make sure that all of the
