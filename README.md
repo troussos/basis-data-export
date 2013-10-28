@@ -1,4 +1,4 @@
-# Basis Data Export [![Build Status](https://travis-ci.org/troussos/basis-data-export.png?branch=master)](https://travis-ci.org/troussos/basis-data-export)
+# Basis Data Export [![Build Status](https://travis-ci.org/troussos/basis-data-export.png?branch=master)](https://travis-ci.org/troussos/basis-data-export)  [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/troussos/basis-data-export/badges/quality-score.png?s=adc3d0323901897db37db9fbf03b63785a19182d)](https://scrutinizer-ci.com/g/troussos/basis-data-export/)   [![Code Coverage](https://scrutinizer-ci.com/g/troussos/basis-data-export/badges/coverage.png?s=f7bb9b66148f6a2f26479e4a5850515ce24425ec)](https://scrutinizer-ci.com/g/troussos/basis-data-export/)
 
 Utility that exports and saves your Basis B1 device's uploaded sensor data.
 You can learn more about Basis at [http://www.mybasis.com/](http://www.mybasis.com/)
