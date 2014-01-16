@@ -2,9 +2,9 @@
          backupStaticAttributes     ="false"
          colors                     ="true"
          syntaxCheck                ="false"
-         convertErrorsToExceptions  ="true"
-         convertNoticesToExceptions ="true"
-         convertWarningsToExceptions="true">
+         convertErrorsToExceptions  ="false"
+         convertNoticesToExceptions ="false"
+         convertWarningsToExceptions="false">
     <testsuites>
         <testsuite name="Tests">
             <directory suffix=".php">tests/.</directory>
