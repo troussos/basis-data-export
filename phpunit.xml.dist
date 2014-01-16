@@ -1,7 +1,10 @@
-<phpunit backupGlobals          ="false"
-         backupStaticAttributes ="false"
-         colors                 = "true"
-         syntaxCheck            ="false">
+<phpunit backupGlobals              ="false"
+         backupStaticAttributes     ="false"
+         colors                     ="true"
+         syntaxCheck                ="false"
+         convertErrorsToExceptions  ="true"
+         convertNoticesToExceptions ="true"
+         convertWarningsToExceptions="true">
     <testsuites>
         <testsuite name="Tests">
             <directory suffix=".php">tests/.</directory>

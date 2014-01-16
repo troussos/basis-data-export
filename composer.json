@@ -9,5 +9,11 @@
         "psr-0":{
             "troussos": "src/"
         }
+    },
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "phpunit/php-code-coverage": "1.4.*@dev"
     }
 }
