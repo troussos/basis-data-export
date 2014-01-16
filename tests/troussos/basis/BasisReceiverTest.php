@@ -48,10 +48,17 @@ class BasisReceiverTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidUserIDMakeRequest()
     {
+        try
+        {
         $user = new User('1');
         $dataURLs = new DataUrl();
         $this->basisReciever->setParameters($user, $dataURLs);
         $this->basisReciever->makeRequest();
+        }
+        catch($e)
+        {
+            echo $e->getMessage();
+        }
     }
 
     /**
