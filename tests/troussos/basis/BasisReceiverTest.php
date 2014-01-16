@@ -55,7 +55,7 @@ class BasisReceiverTest extends \PHPUnit_Framework_TestCase
         $this->basisReciever->setParameters($user, $dataURLs);
         $this->basisReciever->makeRequest();
         }
-        catch($e)
+        catch(\Exception $e)
         {
             echo $e->getMessage();
         }
